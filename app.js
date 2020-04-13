@@ -71,7 +71,6 @@ app.use("/", (req,res,next) => {
 })
 
 app.post(['/api/v1/on-covid-19','/api/v1/on-covid-19/json'], (req, res,next) => {
-    const body = req.body;
     res.on("finish",() => {
        log(req,res)
     })
