@@ -1,0 +1,23 @@
+{
+  "name": "my-covid-19-estimator-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/segbedzi/my-covid-19-estimator-api.git"
+  },
+  "author": "edem",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/segbedzi/my-covid-19-estimator-api/issues"
+  },
+  "homepage": "https://github.com/segbedzi/my-covid-19-estimator-api#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "object-to-xml": "^2.0.0"
+  }
+}
