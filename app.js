@@ -4,7 +4,8 @@ const  xml = require('object-to-xml')
 const  fs = require('fs')
 
 const app = express()
-const port =  process.env.PORT || 5000
+const port = process.env.PORT || 1337;
+
 const fileName = 'log.txt'
 
 const covid19ImpactEstimator = (data) => {
