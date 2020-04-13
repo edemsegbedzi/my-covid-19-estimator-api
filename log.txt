@@ -1,0 +1,2 @@
+GET / 400 1ms
+GET /favicon.ico 400 0ms

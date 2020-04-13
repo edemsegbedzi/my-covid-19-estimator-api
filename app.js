@@ -91,4 +91,4 @@ app.use((req,res) => {
    return res.send("Not found")
 })
 
-app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`))
+app.listen(port, () => console.log(`Example app listening at ${port}`))
