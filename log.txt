@@ -1,2 +1,4 @@
 GET / 400 1ms
 GET /favicon.ico 400 0ms
+POST /api/v1/on-covid-19/json 500 12ms
+POST /api/v1/on-covid-19/json 200 64ms

@@ -7,48 +7,8 @@ const app = express()
 const port = process.env.PORT || 1337;
 
 const fileName = 'log.txt'
+const covid19ImpactEstimator = require("./estimator")
 
-const covid19ImpactEstimator = (data) => {
-    const currentlyInfected = calcCurrentlyInfected(data.reportedCases);
-    const severeCurrentlyInfected = calcSevereCurrentlyInfected(data.reportedCases);
-    const days = calcDays(data.periodType, data.timeToElapse);
-    const factor = calcFactor(data.periodType, data.timeToElapse);
-    const impactInfectionsByRequestedTime = calcInfections(currentlyInfected, factor);
-    const impactSCaseRequest = calcSevereCases(impactInfectionsByRequestedTime);
-    const severeImpactInfectionsByRequestedTime = calcInfections(severeCurrentlyInfected, factor);
-    const severeSCaseRequest = calcSevereCases(severeImpactInfectionsByRequestedTime);
-  
-    return {
-      data,
-      impact: {
-        currentlyInfected,
-        infectionsByRequestedTime: impactInfectionsByRequestedTime,
-        severeCasesByRequestedTime: impactSCaseRequest,
-        hospitalBedsByRequestedTime: calcHospitalBeds(data.totalHospitalBeds,
-          impactSCaseRequest),
-        casesForICUByRequestedTime: calcIcuCare(impactInfectionsByRequestedTime),
-        casesForVentilatorsByRequestedTime: calcVentilators(impactInfectionsByRequestedTime),
-        dollarsInFlight: calcDollarsInFlight(impactInfectionsByRequestedTime,
-          data.region.avgDailyIncomePopulation, data.region.avgDailyIncomeInUSD,
-          days)
-  
-      },
-      severeImpact: {
-        currentlyInfected: severeCurrentlyInfected,
-        infectionsByRequestedTime: severeImpactInfectionsByRequestedTime,
-        severeCasesByRequestedTime: severeSCaseRequest,
-        hospitalBedsByRequestedTime: calcHospitalBeds(data.totalHospitalBeds,
-          severeSCaseRequest),
-        casesForICUByRequestedTime: calcIcuCare(severeImpactInfectionsByRequestedTime),
-        casesForVentilatorsByRequestedTime: calcVentilators(severeImpactInfectionsByRequestedTime),
-        dollarsInFlight: calcDollarsInFlight(severeImpactInfectionsByRequestedTime,
-          data.region.avgDailyIncomePopulation, data.region.avgDailyIncomeInUSD,
-          days)
-  
-  
-      }
-    };
-  };
 
 const log = (req,res) => {
     const duration = Date.now() - req.body.start;
