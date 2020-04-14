@@ -39,6 +39,11 @@ app.post(['/api/v1/on-covid-19','/api/v1/on-covid-19/json'], (req, res,next) => 
 
 })
 
+
+app.get("/clear", (req,res) => {
+    fs.unlink
+    return res.send("Done")
+})
 app.post('/api/v1/on-covid-19/xml', (req, res,next) => {
     res.type('application/xml');
     log(req,res)
