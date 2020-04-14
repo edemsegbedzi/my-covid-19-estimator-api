@@ -15,6 +15,7 @@ const log = (req,res) => {
         return
     }else{
         const duration = Date.now() - req.body.start;
+        duration = duration < 10 ? "0"+(duration+"") : duration;
         fs.appendFile(fileName,`${req.method} ${req.originalUrl} ${res.statusCode} ${duration}ms\n`, function (err) {
         if (err) return console.log(err);
     })}
