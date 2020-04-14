@@ -11,10 +11,13 @@ const covid19ImpactEstimator = require("./estimator")
 
 
 const log = (req,res) => {
-    const duration = Date.now() - req.body.start;
-    fs.appendFile(fileName,`${req.method} ${req.originalUrl} ${res.statusCode} ${duration}ms\n`, function (err) {
+    if(req.originalUrl == "/" || req.originalUrl == "/favicon.ico"){
+        return
+    }else{
+        const duration = Date.now() - req.body.start;
+        fs.appendFile(fileName,`${req.method} ${req.originalUrl} ${res.statusCode} ${duration}ms\n`, function (err) {
         if (err) return console.log(err);
-    })
+    })}
 }
 
 app.get("/api/v1/on-covid-19/logs", (req,res) => {    
