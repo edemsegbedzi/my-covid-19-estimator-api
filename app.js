@@ -26,12 +26,9 @@ app.get("/api/v1/on-covid-19/logs", (req,res) => {
 
 app.use(bodyParser.json({ extended: true }));
 
-app.use("/", (req,res,next) => {
-    req.body.start = Date.now()
-    next();
-})
 
 app.post(['/api/v1/on-covid-19','/api/v1/on-covid-19/json'], (req, res,next) => {
+    req.body.start = Date.now()
     res.on("finish",() => {
        log(req,res)
     })
@@ -45,16 +42,18 @@ app.get("/clear", (req,res) => {
     return res.send("Done")
 })
 app.post('/api/v1/on-covid-19/xml', (req, res,next) => {
+    req.body.start = Date.now()
     res.type('application/xml');
     log(req,res)
     return res.send(xml(covid19ImpactEstimator(req.body)))
 })
 
 
-app.use((req,res) => {
-    res.status(400)
-    log(req,res)
-   return res.send("Not found")
-})
+// app.use((req,res) => {
+//     req.body.start = Date.now()
+//     res.status(400)
+//     log(req,res)
+//    return res.send("Not found")
+// })
 
 app.listen(port, () => console.log(`Example app listening at ${port}`))
