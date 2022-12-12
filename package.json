@@ -22,7 +22,7 @@
   "homepage": "https://github.com/segbedzi/my-covid-19-estimator-api#readme",
   "dependencies": {
     "dotenv": "^8.2.0",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "object-to-xml": "^2.0.0"
   }
 }
